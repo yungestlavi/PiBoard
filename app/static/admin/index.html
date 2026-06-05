@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard · Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gridstack@10/dist/gridstack.min.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <header>
+    <h1>Smart<span>Dashboard</span></h1>
+    <nav class="tabs">
+      <button class="tab active" data-tab="aspetto">Aspetto</button>
+      <button class="tab" data-tab="widget">Widget</button>
+      <button class="tab" data-tab="foto">Foto &amp; Account</button>
+      <button class="tab" data-tab="sistema">Sistema</button>
+    </nav>
+    <div class="status" id="status"></div>
+  </header>
+
+  <!-- ===== ASPETTO ===== -->
+  <section class="panel active" id="tab-aspetto">
+    <div class="cols">
+      <div class="card">
+        <h2>Palette</h2>
+        <label>Sfondo <input type="color" id="c-bg"></label>
+        <label>Superficie widget <input type="color" id="c-surface"></label>
+        <label>Testo <input type="color" id="c-text"></label>
+        <label>Accento <input type="color" id="c-accent"></label>
+        <label>Secondario <input type="color" id="c-muted"></label>
+      </div>
+      <div class="card">
+        <h2>Vetro (glassmorphism)</h2>
+        <label>Sfocatura <input type="range" id="g-blur" min="0" max="40" step="1"><b id="g-blur-v"></b></label>
+        <label>Opacità <input type="range" id="g-opacity" min="0" max="1" step="0.02"><b id="g-opacity-v"></b></label>
+        <label>Raggio bordi <input type="range" id="g-radius" min="0" max="48" step="1"><b id="g-radius-v"></b></label>
+        <label class="row"><input type="checkbox" id="g-shadow"> Ombra</label>
+      </div>
+      <div class="card">
+        <h2>Font</h2>
+        <label>Famiglia corpo <select id="f-body"></select></label>
+        <label>Famiglia titoli <select id="f-display"></select></label>
+        <div class="uploader">
+          <input type="file" id="f-file" accept=".ttf,.otf,.woff,.woff2">
+          <button class="btn" id="f-upload">Carica font</button>
+        </div>
+        <div class="chips" id="f-list"></div>
+      </div>
+      <div class="card">
+        <h2>Sfondo</h2>
+        <label>Modalità
+          <select id="bg-mode"><option value="photos">Foto (photoframe)</option><option value="solid">Tinta unita</option></select>
+        </label>
+        <label>Colore tinta <input type="color" id="bg-solid"></label>
+        <label class="row"><input type="checkbox" id="bg-kb"> Effetto Ken Burns (zoom lento)</label>
+      </div>
+      <div class="card wide">
+        <h2>CSS personalizzato</h2>
+        <textarea id="custom-css" rows="6" placeholder=".widget-inner{ letter-spacing:1px }"></textarea>
+      </div>
+    </div>
+    <button class="btn primary save" id="save-aspetto">Salva aspetto</button>
+  </section>
+
+  <!-- ===== WIDGET ===== -->
+  <section class="panel" id="tab-widget">
+    <div class="toolbar">
+      <span>Aggiungi:</span>
+      <button class="btn" data-add="clock">Orologio</button>
+      <button class="btn" data-add="weather">Meteo</button>
+      <button class="btn" data-add="calendar">Calendario</button>
+      <button class="btn" data-add="rss">RSS</button>
+      <button class="btn" data-add="text">Testo</button>
+      <button class="btn danger" id="clear-widgets" style="width:auto;margin:0">Rimuovi tutto</button>
+      <button class="btn primary save" id="save-widgets">Salva layout</button>
+    </div>
+    <div class="grid-stack" id="grid"></div>
+  </section>
+
+  <!-- ===== FOTO ===== -->
+  <section class="panel" id="tab-foto">
+    <div class="cols">
+      <div class="card">
+        <h2>Sorgenti cloud</h2>
+        <h3 style="margin:.2rem 0;font-size:.95rem">Cartella Google Drive da link <span style="color:var(--accent)">(consigliato)</span></h3>
+        <label>Link della cartella condivisa
+          <input type="text" id="gdrive-link" placeholder="https://drive.google.com/drive/folders/…">
+        </label>
+        <label>Chiave API Google <span style="color:var(--muted)">(una volta sola; o nel .env)</span>
+          <input type="text" id="gdrive-apikey" placeholder="AIza…">
+        </label>
+        <button class="btn primary" id="conn-gdrive-link">Collega cartella Drive</button>
+        <h3 style="margin:1rem 0 .2rem;font-size:.95rem">Cartella Dropbox da link</h3>
+        <label>Link della cartella condivisa
+          <input type="text" id="dropbox-link" placeholder="https://www.dropbox.com/scl/fo/…">
+        </label>
+        <button class="btn primary" id="conn-dropbox-link">Collega cartella Dropbox</button>
+        <hr style="border:none;border-top:1px solid var(--line);margin:1rem 0">
+      </div>
+      <div class="card">
+        <h2>Account collegati</h2>
+        <div id="acc-list"></div>
+      </div>
+      <div class="card">
+        <h2>Cache foto</h2>
+        <p><b id="photo-count">0</b> immagini in cache sul Pi.</p>
+        <label class="row">Durata di ogni foto (sec):
+          <input type="number" id="rotate-secs" min="3" max="600" style="width:5rem"></label>
+        <button class="btn" id="save-rotate">Salva durata</button>
+        <button class="btn primary" id="sync-now">Sincronizza ora</button>
+      </div>
+      <div class="card wide">
+        <h2>Le tue foto</h2>
+        <div class="uploader">
+          <input type="file" id="photo-files" accept="image/*" multiple>
+          <button class="btn primary" id="photo-upload">Carica foto</button>
+        </div>
+        <p class="info">Le immagini restano sul Pi a piena risoluzione (qualità originale). Per uno schermo Full HD, usa foto di almeno 1920px sul lato lungo.</p>
+        <label>Risoluzione massima
+          <select id="max-dim">
+            <option value="0">Originale (nessun limite)</option>
+            <option value="3840">4K · 3840px</option>
+            <option value="2560">2560px (consigliato)</option>
+            <option value="1920">Full HD · 1920px</option>
+            <option value="1280">1280px (leggero)</option>
+          </select>
+        </label>
+        <div class="uploader">
+          <button class="btn" id="save-maxdim">Salva risoluzione</button>
+          <button class="btn" id="reprocess">Riprocessa foto esistenti</button>
+        </div>
+        <div class="gallery" id="gallery"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SISTEMA ===== -->
+  <section class="panel" id="tab-sistema">
+    <div class="cols">
+      <div class="card">
+        <h2>Stato</h2>
+        <div id="status-box" class="info">Carico…</div>
+        <button class="btn" id="status-refresh">Aggiorna</button>
+      </div>
+      <div class="card">
+        <h2>Backup configurazione</h2>
+        <p class="info">Salva/ripristina stili e layout dei widget (non le foto né gli account).</p>
+        <button class="btn primary" id="backup-export">Esporta</button>
+        <div class="uploader">
+          <input type="file" id="backup-file" accept=".json">
+          <button class="btn" id="backup-import">Importa</button>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Sessione</h2>
+        <button class="btn" id="logout-btn">Esci dall'admin</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gate di login (mostrato solo se serve una password) -->
+  <div class="login-gate" id="login-gate" style="display:none">
+    <div class="login-box">
+      <h2>Accesso admin</h2>
+      <input type="password" id="login-pw" placeholder="Password" autocomplete="current-password">
+      <button class="btn primary" id="login-btn">Entra</button>
+      <p class="info" id="login-err"></p>
+    </div>
+  </div>
+
+  <!-- Drawer configurazione widget -->
+  <div class="drawer" id="drawer">
+    <div class="drawer-head"><span id="drawer-title">Widget</span>
+      <button class="x" id="drawer-close">×</button></div>
+    <div id="drawer-body"></div>
+    <button class="btn danger" id="drawer-remove">Rimuovi widget</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gridstack@10/dist/gridstack-all.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

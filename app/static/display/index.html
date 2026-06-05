@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="it" translate="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google" content="notranslate">
+  <title>PiBoard</title>
+  <link rel="stylesheet" href="display.css">
+  <style id="user-fonts"></style>
+  <style id="user-css"></style>
+</head>
+<body>
+  <!-- Due livelli sovrapposti per il crossfade hardware-accelerato -->
+  <div class="bg" id="bg-a"></div>
+  <div class="bg" id="bg-b"></div>
+  <div class="bg-tint"></div>
+
+  <!-- Griglia 12x12 dei widget, posizionati in percentuale -->
+  <main class="grid" id="grid"></main>
+
+  <div class="boot" id="boot">Avvio dashboard…</div>
+
+  <script src="display.js"></script>
+</body>
+</html>

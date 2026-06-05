@@ -1,0 +1,118 @@
+:root {
+  --bg: #0e1116; --bg2: #161b22; --line: #232a35;
+  --text: #e6edf3; --muted: #8b98a8; --accent: #5ec8ff; --danger: #ff6b6b;
+  --radius: 14px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--text);
+  font-family: "IBM Plex Sans", sans-serif; padding-bottom: 4rem;
+}
+header {
+  position: sticky; top: 0; z-index: 5; background: rgba(14,17,22,0.9);
+  backdrop-filter: blur(10px); border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; gap: 1.5rem; padding: 0.9rem 1.4rem;
+}
+h1 { font-family: "Sora", sans-serif; font-size: 1.2rem; margin: 0; font-weight: 700; }
+h1 span { color: var(--accent); }
+.tabs { display: flex; gap: 0.4rem; }
+.tab {
+  background: none; border: none; color: var(--muted); cursor: pointer;
+  font: 500 0.95rem "IBM Plex Sans"; padding: 0.5rem 0.9rem; border-radius: 10px;
+}
+.tab.active { color: var(--text); background: var(--bg2); }
+.status { margin-left: auto; color: var(--accent); font-size: 0.85rem; min-height: 1em; }
+
+.panel { display: none; padding: 1.5rem; max-width: 1100px; margin: 0 auto; }
+.panel.active { display: block; }
+
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+.card {
+  background: var(--bg2); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 1.1rem 1.2rem;
+}
+.card.wide { grid-column: 1 / -1; }
+.card h2 { font-family: "Sora", sans-serif; font-size: 0.95rem; margin: 0 0 0.9rem; }
+label { display: flex; align-items: center; justify-content: space-between; gap: 0.8rem;
+  font-size: 0.9rem; color: var(--muted); margin-bottom: 0.7rem; }
+label.row { justify-content: flex-start; }
+input[type="text"], select, textarea {
+  background: var(--bg); border: 1px solid var(--line); color: var(--text);
+  border-radius: 9px; padding: 0.5rem 0.6rem; font: inherit; width: 60%;
+}
+.card.wide textarea { width: 100%; font-family: monospace; }
+input[type="color"] { width: 42px; height: 30px; border: none; background: none; border-radius: 8px; }
+input[type="range"] { width: 55%; }
+label b { color: var(--text); min-width: 2.5em; text-align: right; }
+
+.btn {
+  background: var(--bg2); border: 1px solid var(--line); color: var(--text);
+  padding: 0.55rem 1rem; border-radius: 10px; cursor: pointer; font: 500 0.9rem "IBM Plex Sans";
+}
+.btn:hover { border-color: var(--accent); }
+.btn.primary { background: var(--accent); color: #04212f; border-color: var(--accent); font-weight: 700; }
+.btn.danger { background: none; border-color: var(--danger); color: var(--danger); width: 100%; margin-top: 1rem; }
+.save { margin-left: auto; }
+.panel > .save { display: block; margin: 1.4rem 0 0 auto; }
+
+.toolbar { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+.toolbar span { color: var(--muted); }
+
+.uploader { display: flex; gap: 0.5rem; margin: 0.5rem 0; }
+.uploader input { width: auto; flex: 1; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.chips .chip { background: var(--bg); border: 1px solid var(--line); border-radius: 20px;
+  padding: 0.25rem 0.7rem; font-size: 0.8rem; }
+
+.info { margin-top: 0.8rem; font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+.info code { background: var(--bg); padding: 0.1rem 0.4rem; border-radius: 6px; color: var(--accent); font-size: 1.1em; }
+#acc-list .acc { display: flex; justify-content: space-between; align-items: center;
+  padding: 0.5rem 0; border-top: 1px solid var(--line); }
+#acc-list .acc:first-child { border-top: none; }
+
+/* galleria foto */
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 0.6rem; margin-top: 1rem; }
+.thumb { position: relative; aspect-ratio: 1; border-radius: 10px; overflow: hidden;
+  border: 1px solid var(--line); background: var(--bg); }
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.thumb-x { position: absolute; top: 4px; right: 4px; width: 24px; height: 24px;
+  border: none; border-radius: 50%; background: rgba(0,0,0,0.65); color: #fff;
+  font-size: 1rem; line-height: 1; cursor: pointer; }
+.thumb-x:hover { background: var(--danger); }
+
+/* gridstack */
+.grid-stack { background: var(--bg2); border: 1px solid var(--line); border-radius: var(--radius); min-height: 580px; }
+.grid-stack-item-content {
+  background: var(--bg); border: 1px solid var(--line); border-radius: 10px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: var(--text); gap: 0.4rem; overflow: hidden;
+}
+.gs-name { font-family: "Sora", sans-serif; font-size: 0.9rem; }
+.gs-type { color: var(--muted); font-size: 0.75rem; }
+.gs-cfg { background: var(--accent); color: #04212f; border: none; border-radius: 8px;
+  padding: 0.3rem 0.7rem; font: 700 0.75rem "IBM Plex Sans"; cursor: pointer; }
+
+/* drawer */
+.drawer {
+  position: fixed; top: 0; right: -380px; width: 360px; height: 100%;
+  background: var(--bg2); border-left: 1px solid var(--line); padding: 1.2rem;
+  transition: right 0.25s ease; overflow-y: auto; z-index: 20;
+}
+.drawer.open { right: 0; }
+.drawer-head { display: flex; justify-content: space-between; align-items: center;
+  font-family: "Sora", sans-serif; margin-bottom: 1rem; }
+.x { background: none; border: none; color: var(--muted); font-size: 1.6rem; cursor: pointer; }
+.drawer label { flex-direction: column; align-items: stretch; gap: 0.3rem; }
+.drawer label span { color: var(--muted); font-size: 0.8rem; }
+
+/* gate di login */
+.login-gate { position: fixed; inset: 0; z-index: 50; display: flex;
+  align-items: center; justify-content: center; background: rgba(8,10,14,0.96); }
+.login-box { background: var(--bg2); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 2rem; width: 320px; text-align: center; }
+.login-box h2 { font-family: "Sora", sans-serif; margin: 0 0 1rem; }
+.login-box input { width: 100%; margin-bottom: 0.8rem; }
+.login-box .btn { width: 100%; }
+#login-err { color: var(--danger); min-height: 1em; }
+.drawer input[type="text"], .drawer select { width: 100%; }
