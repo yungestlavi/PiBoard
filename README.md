@@ -102,8 +102,6 @@ Esempio con hostname `dashboard`: `http://dashboard.local:8080/admin/`.
 | **USB / cartella locale** | No | Sì | Imposta `LOCAL_PHOTOS_PATH` |
 | **Dropbox (link)** | No | Sì | Incolli il link di una cartella condivisa |
 | **Google Drive (link)** | No | Sì | Cartella condivisa + una chiave API |
-| **OneDrive** | Sì (device code) | Sì | Niente redirect, ideale per dispositivi headless |
-| **Google Photos** | Sì | No | Selettore ufficiale (Picker API): scegli foto/album a mano |
 
 > 💡 I metodi "a link" (Dropbox e Google Drive) sono i più semplici: niente account da collegare, basta condividere una cartella "con chiunque abbia il link" e incollarlo nel pannello.
 
