@@ -57,7 +57,8 @@ Scarica lo zip dalla pagina [Releases](../../releases) **oppure** clona il repo.
 ```powershell
 # estrai lo zip (usa Expand-Archive per evitare cartelle annidate)
 Expand-Archive "$HOME\Downloads\PiBoard.zip" "$HOME\Desktop" -Force
-
+# copia la cartella sul Raspberry
+scp -r "$HOME\Desktop\PiBoard" <utente>@<ip-o-hostname>:/home/<utente>/
 ```
 se da errore: WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED! 
 
@@ -66,12 +67,7 @@ ricreare la key di autenticazione:
  ```
 ssh-keygen -R dashboard.local
 ssh kiosk@dashboard
- ```
-
-# copia la cartella sul Raspberry
-scp -r "$HOME\Desktop\PiBoard" <utente>@<ip-o-hostname>:/home/<utente>/
 ```
-
 > 💡 **Non** estrarre lo zip con doppio click in Esplora risorse: crea una cartella annidata `PiBoard\PiBoard\`. `Expand-Archive` no.
 
 Su Linux/macOS:
