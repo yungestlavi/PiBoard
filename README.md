@@ -68,6 +68,10 @@ ricreare la key di autenticazione:
 ssh-keygen -R dashboard.local
 ssh kiosk@dashboard
 ```
+se continua a dare errore, incollare questo comando sul powershell:
+```
+Clear-Content C:\Users\rober\.ssh\known_hosts
+```
 > 💡 **Non** estrarre lo zip con doppio click in Esplora risorse: crea una cartella annidata `PiBoard\PiBoard\`. `Expand-Archive` no.
 
 Su Linux/macOS:
