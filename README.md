@@ -60,18 +60,7 @@ Expand-Archive "$HOME\Downloads\PiBoard.zip" "$HOME\Desktop" -Force
 # copia la cartella sul Raspberry
 scp -r "$HOME\Desktop\PiBoard" <utente>@<ip-o-hostname>:/home/<utente>/
 ```
-se da errore: WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED! 
 
-ricreare la key di autenticazione:
-
- ```
-ssh-keygen -R dashboard.local
-ssh kiosk@dashboard
-```
-se continua a dare errore, incollare questo comando sul powershell:
-```
-Clear-Content C:\Users\rober\.ssh\known_hosts
-```
 > 💡 **Non** estrarre lo zip con doppio click in Esplora risorse: crea una cartella annidata `PiBoard\PiBoard\`. `Expand-Archive` no.
 
 Su Linux/macOS:
