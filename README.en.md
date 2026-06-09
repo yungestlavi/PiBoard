@@ -102,8 +102,6 @@ Example with hostname `dashboard`: `http://dashboard.local:8080/admin/`.
 | **USB / local folder** | No | Yes | Set `LOCAL_PHOTOS_PATH` |
 | **Dropbox (link)** | No | Yes | Paste a shared folder link |
 | **Google Drive (link)** | No | Yes | Shared folder + an API key |
-| **OneDrive** | Yes (device code) | Yes | No redirect, ideal for headless devices |
-| **Google Photos** | Yes | No | Official Picker API: choose photos/albums manually |
 
 > 💡 The "link" methods (Dropbox and Google Drive) are the easiest: no account to connect, just share a folder "with anyone who has the link" and paste it into the panel.
 
