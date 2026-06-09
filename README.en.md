@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🖥️ PiBoard
+#  PiBoard
 
 **Self-hosted smart dashboard and digital photo frame for Raspberry Pi.**
 An open-source DAKboard alternative: photos, clock, weather, calendar and news on any screen, managed from a web panel.
@@ -11,7 +11,7 @@ An open-source DAKboard alternative: photos, clock, weather, calendar and news o
 
 ---
 
-## 📑 Table of contents
+## Table of contents
 - [Features](#-features)
 - [Requirements](#-requirements)
 - [Installation](#-installation)
@@ -26,7 +26,7 @@ An open-source DAKboard alternative: photos, clock, weather, calendar and news o
 
 ---
 
-## ✨ Features
+##  Features
 
 - **Full-screen photo frame** with cross-fade, Ken Burns effect and **animated GIFs**.
 - **Resizable grid widgets** (drag the edges, or set width/height/depth) that automatically scale to their size:
@@ -40,13 +40,13 @@ An open-source DAKboard alternative: photos, clock, weather, calendar and news o
 - **Web panel** with optional password, configuration **backup/restore** and a status page.
 - **Robust kiosk mode**: full-screen Chromium with no cursor and no translation bar, hardware watchdog, nightly restart and automatic screen on/off.
 
-## 📦 Requirements
+##  Requirements
 
 - Raspberry Pi 4 (recommended) or 3B+.
 - **Raspberry Pi OS Lite (Trixie) 64-bit**.
 - A microSD card and an HDMI screen.
 
-## 🚀 Installation
+##  Installation
 
 ### 1) Prepare the SD card
 Use [Raspberry Pi Imager](https://www.raspberrypi.com/software/) to write *Raspberry Pi OS Lite (64-bit)*. In the advanced options (⚙️) enable **SSH**, set a **username** (e.g. `kiosk`), the hostname (e.g. `dashboard`) and your Wi-Fi. Boot the Pi and note its address (e.g. `dashboard.local` or the IP from your router).
@@ -62,7 +62,7 @@ Expand-Archive "$HOME\Downloads\PiBoard.zip" "$HOME\Desktop" -Force
 scp -r "$HOME\Desktop\PiBoard" <user>@<ip-or-hostname>:/home/<user>/
 ```
 
-> 💡 Do **not** extract the zip by double-clicking in File Explorer: it creates a nested `PiBoard\PiBoard\` folder. `Expand-Archive` doesn't.
+>  Do **not** extract the zip by double-clicking in File Explorer: it creates a nested `PiBoard\PiBoard\` folder. `Expand-Archive` doesn't.
 
 On Linux/macOS:
 ```bash
@@ -94,7 +94,7 @@ Example with hostname `dashboard`: `http://dashboard.local:8080/admin/`.
 
 > After every update press **Ctrl+Shift+R** in the browser to clear the cache.
 
-## 🖼️ Photo sources
+##  Photo sources
 
 | Source | Login? | Auto-sync | Notes |
 |---|---|---|---|
@@ -103,7 +103,7 @@ Example with hostname `dashboard`: `http://dashboard.local:8080/admin/`.
 | **Dropbox (link)** | No | Yes | Paste a shared folder link |
 | **Google Drive (link)** | No | Yes | Shared folder + an API key |
 
-> 💡 The "link" methods (Dropbox and Google Drive) are the easiest: no account to connect, just share a folder "with anyone who has the link" and paste it into the panel.
+>  The "link" methods (Dropbox and Google Drive) are the easiest: no account to connect, just share a folder "with anyone who has the link" and paste it into the panel.
 
 ### Google Drive via a link (recommended)
 1. On [Google Cloud Console](https://console.cloud.google.com) create a project.
@@ -112,20 +112,20 @@ Example with hostname `dashboard`: `http://dashboard.local:8080/admin/`.
 4. On Google Drive create a folder, add your photos and share it as **"Anyone with the link → Viewer"**.
 5. In the panel, *Google Drive folder via link* box: paste the link and the API key, then press **Connect**. (The **"How do I get the API key"** button shows these same steps.)
 
-> ⚠️ You need the **API key** (`AIza…`), not an **OAuth client ID** (`…apps.googleusercontent.com`).
+>  You need the **API key** (`AIza…`), not an **OAuth client ID** (`…apps.googleusercontent.com`).
 
 ### Dropbox via a link
 1. On Dropbox create a folder, add your photos and create an **"Anyone with the link"** link.
 2. In the panel, *Dropbox folder via link* box: paste the link and press **Connect**. (No key required.)
 
-## 🧩 Widgets
+##  Widgets
 
 - **Calendar:** *card* (phone-style), *month* or *agenda* view. Shows the device date and, if you connect an **iCalendar** or **Google Calendar** link, upcoming events.
 - **Weather:** city chosen via the cascading menus (or, outside Italy, via city search). Shows temperature, condition, High/Low and forecast.
 - **News:** pick a ready-made newspaper (or paste an RSS feed). A featured headline rotates every 10 minutes.
 - **Appearance:** pick a theme from the dropdown, the fonts (shown in their own typeface) and optionally add custom CSS.
 
-## ⚙️ Configuration (`.env`)
+##  Configuration (`.env`)
 
 Settings live in `/opt/piboard/.env`:
 
@@ -146,7 +146,7 @@ After editing `.env`:
 sudo systemctl restart piboard-backend
 ```
 
-## 🔄 Updating PiBoard
+##  Updating PiBoard
 
 Re-copy the updated folder and re-run the installer (your `.env` and photos are kept):
 ```powershell
@@ -158,7 +158,7 @@ ssh <user>@<ip> "cd ~/PiBoard && sed -i 's/\r$//' install.sh && chmod +x install
 
 Alternatively, if you use Git on the Pi: `cd ~/PiBoard && git pull && sudo bash install.sh && sudo systemctl restart piboard-backend`.
 
-## 🛠️ Troubleshooting
+##  Troubleshooting
 
 **SSH error after reinstalling the operating system (`WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED`).**
 Every time you reinstall the OS on the Raspberry Pi, the device generates a new security key. Your PC still has the old one saved and blocks the connection with an error like:
@@ -232,7 +232,7 @@ systemctl status piboard-backend --no-pager
 sudo ss -ltnp | grep :8080
 ```
 
-## 🐙 Publishing on GitHub
+##  Publishing on GitHub
 
 1. Create an **empty** repository on GitHub named `PiBoard` (no README).
 2. In both READMEs the repository is already configured with your username.
@@ -255,6 +255,6 @@ sudo ss -ltnp | grep :8080
 
 > The `.gitignore` already excludes secrets and local data (`.env`, `/data/`, cache, `.venv/`). **Never** put keys or passwords in `.env.example`.
 
-## 📄 License
+##  License
 
 [MIT](LICENSE).
