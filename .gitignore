@@ -1,0 +1,20 @@
+# Segreti e dati locali — non finiscono mai su GitHub
+.env
+secret.key
+/data/
+data/
+*.db
+*.sqlite3
+
+# Cache foto / miniature / font caricati
+photos_cache/
+thumbs/
+fonts/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Sistema
+.DS_Store
