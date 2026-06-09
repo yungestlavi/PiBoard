@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🖥️ PiBoard
+#  PiBoard
 
 **Smart dashboard e cornice digitale self-hosted per Raspberry Pi.**
 Un'alternativa open source a DAKboard: foto, orologio, meteo, calendario e notizie su un qualsiasi schermo, gestiti da un pannello web.
@@ -11,7 +11,7 @@ Un'alternativa open source a DAKboard: foto, orologio, meteo, calendario e notiz
 
 ---
 
-## 📑 Indice
+##  Indice
 - [Funzionalità](#-funzionalità)
 - [Requisiti](#-requisiti)
 - [Installazione](#-installazione)
@@ -26,7 +26,7 @@ Un'alternativa open source a DAKboard: foto, orologio, meteo, calendario e notiz
 
 ---
 
-## ✨ Funzionalità
+##  Funzionalità
 
 - **Cornice digitale** a tutto schermo con dissolvenza incrociata, effetto Ken Burns e **GIF animate**.
 - **Widget a griglia** completamente ridimensionabili (trascini i bordi col mouse o imposti larghezza/altezza/profondità), che si adattano automaticamente alla loro dimensione:
@@ -40,13 +40,13 @@ Un'alternativa open source a DAKboard: foto, orologio, meteo, calendario e notiz
 - **Pannello web** con password opzionale, **backup/ripristino** della configurazione e pagina di stato.
 - **Modalità kiosk** robusta: Chromium a schermo intero senza cursore né barra di traduzione, watchdog hardware, riavvio notturno e accensione/spegnimento automatico dello schermo.
 
-## 📦 Requisiti
+##  Requisiti
 
 - Raspberry Pi 4 (consigliato) o 3B+.
 - **Raspberry Pi OS Lite (Trixie) a 64 bit**.
 - Una microSD e uno schermo HDMI.
 
-## 🚀 Installazione
+## Installazione
 
 ### 1) Prepara la scheda SD
 Con [Raspberry Pi Imager](https://www.raspberrypi.com/software/) scrivi *Raspberry Pi OS Lite (64-bit)*. Nelle impostazioni avanzate (⚙️) abilita **SSH**, imposta un **nome utente** (es. `kiosk`), l'hostname (es. `dashboard`) e la rete Wi-Fi. Avvia il Pi e prendi nota del suo indirizzo (es. `dashboard.local` o l'IP dal router).
@@ -61,7 +61,7 @@ Expand-Archive "$HOME\Downloads\PiBoard.zip" "$HOME\Desktop" -Force
 scp -r "$HOME\Desktop\PiBoard" <utente>@<ip-o-hostname>:/home/<utente>/
 ```
 
-> 💡 **Non** estrarre lo zip con doppio click in Esplora risorse: crea una cartella annidata `PiBoard\PiBoard\`. `Expand-Archive` no.
+>  **Non** estrarre lo zip con doppio click in Esplora risorse: crea una cartella annidata `PiBoard\PiBoard\`. `Expand-Archive` no.
 
 Su Linux/macOS:
 ```bash
@@ -84,7 +84,7 @@ sudo reboot
 
 L'installer crea l'ambiente Python, installa le dipendenze, configura il servizio `piboard-backend`, la modalità kiosk (cage + Chromium), il watchdog e i timer di riavvio/spegnimento schermo. Dopo il riavvio lo schermo mostra PiBoard.
 
-## 🔗 Aprire la dashboard
+##  Aprire la dashboard
 
 - **Display:** `http://<ip-o-hostname>:8080/`
 - **Pannello admin:** `http://<ip-o-hostname>:8080/admin/`  ← lo **slash finale è obbligatorio**
@@ -93,7 +93,7 @@ Esempio con hostname `dashboard`: `http://dashboard.local:8080/admin/`.
 
 > Dopo ogni aggiornamento fai **Ctrl+Shift+R** nel browser per svuotare la cache.
 
-## 🖼️ Sorgenti foto
+##  Sorgenti foto
 
 | Sorgente | Login? | Aggiornamento automatico | Note |
 |---|---|---|---|
@@ -102,7 +102,7 @@ Esempio con hostname `dashboard`: `http://dashboard.local:8080/admin/`.
 | **Dropbox (link)** | No | Sì | Incolli il link di una cartella condivisa |
 | **Google Drive (link)** | No | Sì | Cartella condivisa + una chiave API |
 
-> 💡 I metodi "a link" (Dropbox e Google Drive) sono i più semplici: niente account da collegare, basta condividere una cartella "con chiunque abbia il link" e incollarlo nel pannello.
+>  I metodi "a link" (Dropbox e Google Drive) sono i più semplici: niente account da collegare, basta condividere una cartella "con chiunque abbia il link" e incollarlo nel pannello.
 
 ### Google Drive con un link (consigliato)
 1. Su [Google Cloud Console](https://console.cloud.google.com) crea un progetto.
@@ -111,20 +111,20 @@ Esempio con hostname `dashboard`: `http://dashboard.local:8080/admin/`.
 4. Su Google Drive crea una cartella, mettici le foto e condividila come **"Chiunque con il link → Visualizzatore"**.
 5. Nel pannello, riquadro *Cartella Google Drive da link*: incolla link e chiave API e premi **Collega**. (Il pulsante **"Come ottengo la chiave API"** mostra questi stessi passi.)
 
-> ⚠️ Serve la **Chiave API** (`AIza…`), non un **ID client OAuth** (`…apps.googleusercontent.com`).
+>  Serve la **Chiave API** (`AIza…`), non un **ID client OAuth** (`…apps.googleusercontent.com`).
 
 ### Dropbox con un link
 1. Su Dropbox crea una cartella, mettici le foto e crea un link **"Chiunque con il link"**.
 2. Nel pannello, riquadro *Cartella Dropbox da link*: incolla il link e premi **Collega**. (Nessuna chiave necessaria.)
 
-## 🧩 Widget
+##  Widget
 
 - **Calendario:** vista *card* (stile telefono), *mese* o *agenda*. Mostra la data del dispositivo e, se colleghi un link **iCalendar** o **Google Calendar**, gli eventi in arrivo.
 - **Meteo:** città scelta con i menu a cascata (o, fuori dall'Italia, con la ricerca città). Mostra temperatura, condizione, Max/Min e previsione.
 - **Notizie:** scegli un giornale predefinito (o incolla un feed RSS). Una notizia in evidenza ruota ogni 10 minuti.
 - **Aspetto:** scegli un tema dal menu, i font (mostrati nel proprio carattere) e, se vuoi, aggiungi CSS personalizzato.
 
-## ⚙️ Configurazione (`.env`)
+##  Configurazione (`.env`)
 
 Le impostazioni vivono in `/opt/piboard/.env`:
 
@@ -145,7 +145,7 @@ Dopo aver modificato il `.env`:
 sudo systemctl restart piboard-backend
 ```
 
-## 🔄 Aggiornare PiBoard
+## Aggiornare PiBoard
 
 Ricopia la cartella aggiornata e rilancia l'installer (la tua `.env` e le foto vengono mantenute):
 ```powershell
@@ -157,7 +157,7 @@ ssh <utente>@<ip> "cd ~/PiBoard && sed -i 's/\r$//' install.sh && chmod +x insta
 
 In alternativa, se usi Git sul Pi: `cd ~/PiBoard && git pull && sudo bash install.sh && sudo systemctl restart piboard-backend`.
 
-## 🛠️ Risoluzione problemi
+## Risoluzione problemi
 
 **Errore SSH dopo aver reinstallato il sistema operativo (`WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED`).**
 Ogni volta che si reinstalla il sistema operativo sul Raspberry Pi, il dispositivo genera una nuova chiave di sicurezza. Il PC ha ancora salvata quella vecchia e blocca il collegamento con un errore del tipo:
@@ -231,7 +231,7 @@ systemctl status piboard-backend --no-pager
 sudo ss -ltnp | grep :8080
 ```
 
-## 🐙 Pubblicare su GitHub
+##  Pubblicare su GitHub
 
 1. Crea un repository **vuoto** su GitHub chiamato `PiBoard` (senza README).
 2. Nei due README il repository è già configurato con il tuo username.
@@ -254,6 +254,6 @@ sudo ss -ltnp | grep :8080
 
 > Il file `.gitignore` esclude già i segreti e i dati locali (`.env`, `/data/`, cache, `.venv/`). **Non** mettere mai chiavi o password nel `.env.example`.
 
-## 📄 Licenza
+##  Licenza
 
 [MIT](LICENSE).
