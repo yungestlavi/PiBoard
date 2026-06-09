@@ -173,6 +173,10 @@ ssh-keygen -R dashboard.local
 ssh-keygen -R <ip-del-raspberry>   # es. ssh-keygen -R 192.168.0.198
 ssh kiosk@dashboard.local
 ```
+se da errori incolla questo comando:
+```
+Clear-Content C:\Users\rober\.ssh\known_hosts
+```
 Verrà chiesto di nuovo di confermare con `yes` e di inserire la password: è il comportamento corretto. Lo stesso errore blocca anche `scp`: basta eseguire i due `ssh-keygen -R` prima di copiare i file.
 
 **Il pannello mostra "SmartDashboard" invece di "PiBoard".**
