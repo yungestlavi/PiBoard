@@ -175,7 +175,7 @@ ssh kiosk@dashboard.local
 ```
 se da errori incolla questo comando:
 ```
-Clear-Content C:\Users\rober\.ssh\known_hosts
+Clear-Content C:\Users\nome-utente\.ssh\known_hosts
 ```
 Verrà chiesto di nuovo di confermare con `yes` e di inserire la password: è il comportamento corretto. Lo stesso errore blocca anche `scp`: basta eseguire i due `ssh-keygen -R` prima di copiare i file.
 
